@@ -139,3 +139,19 @@ Alors ("l'item {string} n'est pas affiché") do |item|
   expect(page).not_to have_content item
 end
 
+
+Soit("on sélectionne {string}") do |item|
+  click_on item
+end
+
+Soit("{string} la rubrique ouverte") do |item|
+  expect(page).to have_content item
+end
+
+Quand("on crée un point de vue") do
+  find(".add").click
+end
+
+Alors("le titre de la page est {string}") do |item|
+  expect(page).to have_content item
+end
