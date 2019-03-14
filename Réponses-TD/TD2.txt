@@ -1,0 +1,47 @@
+1 - On peut trouver les petites coches vertes ou les croix rouges dans l’onglet “Pull request”.
+Elles correspondent à des scénarios de test en échec pour les croix rouge en réussite pour les coche vertes.
+Des outils de type travis qui vont avec un fichier par exemple travis.yml. Sur les événements d’un scénario de test.
+
+2 - Les tests se trouvent dans : Porphyry/features/step_definitions
+les scénarios s’articulent sous forme de :
+Soit
+Quand
+Alors
+Avec des conditions par la suite qui contiennent des variables telles que : Alors("le titre affiché est {string}")
+
+5- Notre scénario de la semaine dernière concerne l’ajout de point de vue. Nous avons réussi à faire fonctionner les 2 premières instructions du scénario.
+
+
+Soit “vitraux” le portfolio ouvert
+Quand on choisit la rubrique “Nouveau point de vue”
+Alors le titre de l’item affiché est “Création de point de vue”
+-> Nous n’avons pas trouvé d’instructions type dans le code des tests correspondant à cette dernière instruction car nous pensons que la rubrique “Nouveau point de vue” est différentes des autres.
+
+
+On crée un nouveau scénario :
+
+Soit “vitraux” le portfolio ouvert
+Et on  sélectionne “nouveau point de vue”
+Et “Création  du point de vue” la rubrique ouverte
+Quand on crée un point de vue
+Alors le titre de la page est “Modification du point de vue”
+
+Pour le faire fonctionner, nous avons créer de nouvelles instructions :
+
+Soit(“on sélectionne {string}”) do |item|
+click_on item
+end
+
+Soit(“{string} la rubrique ouverte”) do |item|
+expect(page).to have_content item
+end
+
+Quand(“on crée un point de vue}”) do |item|
+click_on item
+end
+
+Alors(“le titre de la page est {string}”) do |item|
+expect(page).to have_content item
+end
+
+Nous corrigerons plus tard notre
